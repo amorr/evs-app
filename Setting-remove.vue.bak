@@ -1,0 +1,40 @@
+<template>
+  <div class="setting">
+    <a-collapse v-model="activeKey">
+        <a-collapse-panel key="AddNewProduct" header="添加新产品">
+            <AddNewProduct ref="addnewproductcomponent" />
+        </a-collapse-panel>
+        <a-collapse-panel key="AddNewCategory" header="添加新分类">
+            <AddNewCategory v-on:update-category="updateCategories"/>
+        </a-collapse-panel>
+        <a-collapse-panel key="AddNewUnit" header="添加新单位">
+            <AddNewUnit v-on:update-unit="updateUnits"/>
+        </a-collapse-panel>
+    </a-collapse>
+  </div>
+</template>
+
+<script>
+import AddNewProduct from '@/components/AddNewProduct.vue'
+import AddNewCategory from '@/components/AddNewCategory.vue'
+import AddNewUnit from '@/components/AddNewUnit.vue'
+export default {
+  data() {
+    return {
+      activeKey: ["AddNewProduct"],
+    };
+  },
+  components:{AddNewProduct,AddNewCategory,AddNewUnit},
+  mounted() {
+  },
+  methods: {
+    updateCategories(){
+      this.$refs.addnewproductcomponent.getcategories();
+    },
+    updateUnits(){
+      this.$refs.addnewproductcomponent.getUnit();
+    }
+  },
+};
+</script>
+
